@@ -8,6 +8,11 @@ on:
   schedule:
     - cron: "30 09 * * 1"
 
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
 jobs:
   trivy-scanning-job:
     name: Trivy Security Scanning Job
@@ -22,7 +27,7 @@ jobs:
           image-ref: "webspellchecker/wproofreader:latest"
           scan-type: "image"
           format: "sarif"
-          output: 'trivy-results.sarif'
+          output: "trivy-results.sarif"
           vuln-type: "os,library"
           severity: "CRITICAL,HIGH"
 
